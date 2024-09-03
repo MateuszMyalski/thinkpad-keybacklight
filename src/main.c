@@ -1,9 +1,11 @@
 #include "config.h"
 #include "events.h"
 #include "thinkpad_leds.h"
+#include "schedule.h"
 
 #include <assert.h>
 #include <stdio.h>
+#include <unistd.h>
 
 #ifdef CONFIG_DISABLE_VERBOSE
 #define VERBOSE(...)
@@ -12,6 +14,11 @@
 #endif
 
 int main(int argc, char **argv) {
+
+#ifdef CONFIG_ENABLE_SCHEDULE
+    schedule_set_on_time(CONFIG_DEFAULT_SCHEDULE_ON_HOUR, CONFIG_DEFAULT_SCHEDULE_ON_MINUTE);
+    schedule_set_off_time(CONFIG_DEFAULT_SCHEDULE_OFF_HOUR, CONFIG_DEFAULT_SCHEDULE_OFF_MINUTE);
+#endif
 
     events_status_t events_status;
 
@@ -41,6 +48,14 @@ int main(int argc, char **argv) {
     thinkpad_leds_keyboard_set_brightness(0);
 
     while (1) {
+
+#ifdef CONFIG_ENABLE_SCHEDULE
+        if (!schedule_is_in_time_range()) {
+            VERBOSE("Not in schedule\n");
+            sleep(1);
+            continue;
+        }
+#endif
         event_type_t event_type = EVENT_TYPE_TIMEOUT;
         events_pool_for_event(CONFIG_DEFAULT_TIMEOUT_MS, &event_type);
 
