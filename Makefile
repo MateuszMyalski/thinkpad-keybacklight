@@ -1,13 +1,13 @@
 # Variables
 CC = gcc
-CFLAGS = -Wall -Werror -g -Iinclude
+CFLAGS = -Wall -Werror -Iinclude -std=gnu99
 TARGET = thinkpad-keybacklight
-SRC = src/main.c src/events.c src/thinkpad_leds.c src/schedule.c
+SRCS = src/main.c src/events.c src/thinkpad_leds.c src/schedule.c
 
 all: $(TARGET)
 
-$(TARGET): $(SRC)
-	$(CC) $(CFLAGS) -o $@ $(SRC)
+$(TARGET): $(SRCS)
+	$(CC) $(CFLAGS) -o $@ $(SRCS)
 
 clean:
 	rm -f $(TARGET)
@@ -23,6 +23,20 @@ uninstall:
 	systemctl disable thinkpad-keybacklight.service
 	rm /usr/bin/$(TARGET)
 	rm /etc/systemd/system/thinkpad-keybacklight.service
+
+clang-tidy:
+	@for file in $(SRCS); do \
+		clang-tidy $$file -- $(CFLAGS); \
+	done
+
+clang-format:
+	@for file in $(SRCS); do \
+		clang-format -i $$file --style=file; \
+	done
+
+	@for file in include/*; do \
+		clang-format -i $$file --style=file; \
+	done
 
 # Phony targets
 .PHONY: all clean install uninstall
