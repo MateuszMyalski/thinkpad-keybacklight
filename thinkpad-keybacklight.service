@@ -1,6 +1,5 @@
 [Unit]
 Description=Thinkpad keyboard backlight service
-After=network.target
 
 [Service]
 User=root
@@ -9,7 +8,5 @@ ExecStart=/usr/bin/thinkpad-keybacklight
 Type=exec
 Restart=always
 
-
 [Install]
 WantedBy=default.target
-RequiredBy=network.target
