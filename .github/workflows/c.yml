@@ -12,11 +12,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-<<<<<<< HEAD
-    - uses: actions/checkout@v4
-=======
     - uses: actions/checkout@v3
->>>>>>> 472fdb4 (Change gh actions)
     - name: configure
       run: ./configure
     - name: make
