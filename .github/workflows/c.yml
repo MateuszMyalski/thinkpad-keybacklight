@@ -12,7 +12,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+<<<<<<< HEAD
     - uses: actions/checkout@v3
+=======
+>>>>>>> f9f49b2 (Chane checkout to v3)
     - name: configure
       run: ./configure
     - name: make
