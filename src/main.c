@@ -17,8 +17,8 @@
  */
 #include "config.h"
 #include "events.h"
-#include "thinkpad_leds.h"
 #include "schedule.h"
+#include "thinkpad_leds.h"
 
 #include <assert.h>
 #include <stdio.h>
