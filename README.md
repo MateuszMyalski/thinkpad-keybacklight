@@ -20,7 +20,7 @@ It is not needed to install the controller to test it's behavior. To run the pro
 make thinkpad-keybacklight
 sudo ./thinkpad-keybacklight
 ```
-The program must be executed with sudo privileges as it interacts with /sys/class pseudo-filesystem.
+The program must be executed with sudo privileges as it interacts with `/sys/class` pseudo-filesystem.
 
 ## How to install
 To install the ThinkPad Keyboard Backlight Controller, use the following command:
