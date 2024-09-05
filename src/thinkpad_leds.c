@@ -39,7 +39,7 @@ static thinkpad_leds_status_t _keyboard_get_max_brightness(int *max_brightness) 
     assert(max_brightness != NULL);
 
     int fd = open(TPACPI_KBD_BACKLIGHT_PATH "/max_brightness", O_RDONLY);
-    if (keyboard_leds.fd <= 0) {
+    if (fd <= 0) {
         return THINKPAD_LEDS_FILE_OPEN_ERROR;
     }
 
