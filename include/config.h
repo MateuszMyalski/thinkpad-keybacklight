@@ -27,9 +27,9 @@
 #define CONFIG_DEFAULT_KEYBOARD_INPUT_EVENT "/dev/input/event0"
 
 /**
- * @brief Default file path for the mouse input event.
+ * @brief Default file path for the battery status.
  *
- * This macro defines the default file path used to capture mouse input events.
+ * This macro defines the default file path used to access battery status.
  */
 #define CONFIG_DEFAULT_MOUSE_INPUT_EVENT "/dev/input/mouse0"
 
@@ -74,6 +74,15 @@
 #define CONFIG_DEFAULT_SCHEDULE_OFF_MINUTE 00
 
 /**
+ * @brief Default the power threshold level.
+ *
+ * This macro defines the default threshold level at which power-saving features should be enabled.
+ * The default is set to 25 percents.
+ *
+ */
+#define CONFIG_DEFAULT_POWER_THRESHOLD 25
+
+/**
  * @brief Enable mouse event handling.
  *
  * This macro enables the handling of mouse events within the system.
@@ -92,23 +101,29 @@
 /**
  * @brief Enable automatic lowering of brightness on mouse events.
  *
- * This macro enables the feature that automatically lowers the screen brightness when a mouse event is detected.
+ * This macro enables the feature that automatically lowers the keyboard brightness when a mouse event is detected.
  */
 #define CONFIG_ENABLE_MOUSE_LOWER_BRIGHTNESS
 
 /**
  * @brief Enable scheduling feature.
  *
- * This macro enables the scheduling feature within the system, allowing operations to be performed based on predefined
- * times.
+ * This macro enables the scheduling the time ranges within the keyboard backlight will be enabled.
  */
 #define CONFIG_ENABLE_SCHEDULE
+
+/**
+ * @brief Enable power saving mode.
+ *
+ * This macro enables power saving mode in the system. When defined, the system will not enable keyboard backlight.
+ */
+#define CONFIG_ENABLE_POWER_SAVING
 
 /**
  * @brief Disable verbose logging.
  *
  * This macro disables verbose logging in the system. When defined, detailed log output is suppressed.
  */
-#define CONFIG_DISABLE_VERBOSE
+// #define CONFIG_DISABLE_VERBOSE
 
 #endif

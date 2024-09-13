@@ -18,6 +18,7 @@
 #include "config.h"
 #include "events.h"
 #include "schedule.h"
+#include "thinkpad_bat.h"
 #include "thinkpad_leds.h"
 
 #include <assert.h>
@@ -35,6 +36,10 @@ int main(int argc, char **argv) {
 #ifdef CONFIG_ENABLE_SCHEDULE
     schedule_set_on_time(CONFIG_DEFAULT_SCHEDULE_ON_HOUR, CONFIG_DEFAULT_SCHEDULE_ON_MINUTE);
     schedule_set_off_time(CONFIG_DEFAULT_SCHEDULE_OFF_HOUR, CONFIG_DEFAULT_SCHEDULE_OFF_MINUTE);
+#endif
+
+#ifdef CONFIG_ENABLE_POWER_SAVING
+    thinkpad_bat_set_threshold(CONFIG_DEFAULT_POWER_THRESHOLD);
 #endif
 
     events_status_t events_status;
@@ -65,6 +70,30 @@ int main(int argc, char **argv) {
     thinkpad_leds_keyboard_set_brightness(0);
 
     while (1) {
+
+#ifdef CONFIG_ENABLE_POWER_SAVING
+        bool is_bat_threshold_reached;
+        bool is_bat_charging;
+
+        thinkpad_bat_set_threshold(CONFIG_DEFAULT_POWER_THRESHOLD);
+
+        thinkpad_bat_status_t thinkpad_bat_status;
+        thinkpad_bat_status = thinkpad_bat_is_threshold_reached(&is_bat_threshold_reached);
+        if (THINKPAD_BAT_OK != thinkpad_bat_status) {
+            assert(0);
+        }
+
+        thinkpad_bat_status = thinkpad_bat_is_charging(&is_bat_charging);
+        if (THINKPAD_BAT_OK != thinkpad_bat_status) {
+            assert(0);
+        }
+
+        if (is_bat_threshold_reached && !is_bat_charging) {
+            VERBOSE("Battery level too low!\n");
+            sleep(1);
+            continue;
+        }
+#endif
 
 #ifdef CONFIG_ENABLE_SCHEDULE
         if (!schedule_is_in_time_range()) {

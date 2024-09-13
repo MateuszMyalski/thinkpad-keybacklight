@@ -49,8 +49,10 @@ You can customize the default settings by editing the configuration file before 
 - `CONFIG_DEFAULT_SCHEDULE_ON_MINUTE`: Sets the minute when the backlight should automatically turn on.
 - `CONFIG_DEFAULT_SCHEDULE_OFF_HOUR`: Sets the hour when the backlight should automatically turn off.
 - `CONFIG_DEFAULT_SCHEDULE_OFF_MINUTE`: Sets the minute when the backlight should automatically turn off.
+- `CONFIG_POWER_THRESHOLD`: Sets the threshold below which the backlight is not enabled.
 - `CONFIG_ENABLE_MOUSE_EVENT`: Enables the mouse event listener for backlight control.
 - `CONFIG_ENABLE_KEYBOARD_EVENT`: Enables the keyboard event listener for backlight control.
 - `CONFIG_ENABLE_MOUSE_LOWER_BRIGHTNESS`: Reduces brightness when only the mouse is active.
 - `CONFIG_ENABLE_SCHEDULE`: Enables scheduling for automatic backlight control.
+- `CONFIG_ENABLE_POWER_SAVING`: Enables power saving mode, disables keyboard backlight after reaching the given threshold.
 - `CONFIG_DISABLE_VERBOSE`: Disables verbose logging to reduce console output.

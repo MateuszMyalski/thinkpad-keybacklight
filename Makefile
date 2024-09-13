@@ -2,7 +2,7 @@
 CC = gcc
 CFLAGS = -Wall -Werror -Iinclude -std=gnu99
 TARGET = thinkpad-keybacklight
-SRCS = src/main.c src/events.c src/thinkpad_leds.c src/schedule.c
+SRCS = src/main.c src/events.c src/thinkpad_leds.c src/schedule.c src/thinkpad_bat.c
 
 all: $(TARGET)
 
