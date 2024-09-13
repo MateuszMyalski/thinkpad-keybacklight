@@ -12,7 +12,7 @@ This repository provides a controller for managing the backlight of ThinkPad key
 - [X] Timeout configuration
 - [X] Systemd integration for automatic service management
 - [X] Auto on/off based on time of day
-- [ ] On/Off based on battery level
+- [X] On/Off based on battery level
 
 ## How to test
 It is not needed to install the controller to test it's behavior. To run the program directly from the directory:
