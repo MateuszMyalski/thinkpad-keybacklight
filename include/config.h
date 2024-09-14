@@ -124,6 +124,6 @@
  *
  * This macro disables verbose logging in the system. When defined, detailed log output is suppressed.
  */
-// #define CONFIG_DISABLE_VERBOSE
+#define CONFIG_DISABLE_VERBOSE
 
 #endif
